@@ -54,8 +54,7 @@ public class WeatherPatterns {
         // TODO: Write your code here!
         //Creating a highest point and lowest point right now just to have the variables in case I need them.
         int pointBreak = temperatures[0];
-        int highestPoint = 0;
-        int trendLength = 1;
+        int highestStreak = 0;
         ArrayList<Integer> tempers = new ArrayList<Integer>();
 
         for(int i = 0; i < temperatures.length; i++)
@@ -63,10 +62,14 @@ public class WeatherPatterns {
             //To check output and help visualize
             System.out.println(temperatures[i]);
 
+            //To find the length of the Path to current temperature, if it exists.
+            int trendLength = 1;
+
             //To find the length of a Path to current node, if it exists.
             // Replace with FindLongestTo once completed
             for(int j = i - 1; i >= 0; j--)
             {
+//                if()
 
             }
 
@@ -98,7 +101,7 @@ public class WeatherPatterns {
 //            }
         }
 
-        return trendLength;
+        return highestStreak;
     }
 
 //    should work to replace the for-loop currently in the
