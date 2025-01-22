@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * The class WeatherPatterns finds the longest span of days in which
  * each day’s temperature is higher than on the previous day in that sequence.
@@ -27,8 +29,18 @@
  * Whenever we come across a new value that would "reset" the trend tracker, recurse and find the longest trend of
  * that section. Maybe we could go back and compare each respective trend tracker?
  * Look more into how a recursive method would work..
+ * Updte: Recursive method likely not the best
  *
- * Recursive method likely not the best
+ * Dynamic Programming
+ * - Idea of solving smaller parts of the problem to solve the larger, latter parts of the problem.
+ * - This process is called memoization
+ * Both are time: t(v^2)
+ *
+ * Adjacency Lists
+ * - Space: (V + E)
+ * Adjacency Matrix
+ * - Space: O(V^2)
+ *
  *
  */
 
@@ -44,11 +56,20 @@ public class WeatherPatterns {
         int pointBreak = temperatures[0];
         int highestPoint = 0;
         int trendLength = 1;
+        ArrayList<Integer> tempers = new ArrayList<Integer>();
 
         for(int i = 0; i < temperatures.length; i++)
         {
             //To check output and help visualize
             System.out.println(temperatures[i]);
+
+            //To find the length of a Path to current node, if it exists.
+            // Replace with FindLongestTo once completed
+            for(int j = i - 1; i >= 0; j--)
+            {
+
+            }
+
 //            if(temperatures[i] < lowestPoint)
 //            {
 //                lowestPoint = temperatures[i];
@@ -67,7 +88,6 @@ public class WeatherPatterns {
 
 
 
-
 //            if(temperatures[i] > lowestPoint)
 //            {
 //                trendLength++;
@@ -80,4 +100,12 @@ public class WeatherPatterns {
 
         return trendLength;
     }
+
+//    should work to replace the for-loop currently in the
+//    public static int LongestPathTo(Vertex v)
+//    {
+//        int len = 0;
+//
+//        return len + 1;
+//    }
 }
