@@ -55,6 +55,7 @@ public class WeatherPatterns {
         int highestStreak = 1;
         //thePath will hold the longest Path to the current temp (i), and will be compared against highestStreak
         int[] thePath = new int[temperatures.length];
+//        ArrayList<Integer>[] list = new ArrayList[temperatures.length];
 
         //Just put in thePath[0] as 1 since there's no other option ?
         thePath[0] = 1;
