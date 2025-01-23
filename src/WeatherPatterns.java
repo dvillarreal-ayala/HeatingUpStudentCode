@@ -51,26 +51,37 @@ public class WeatherPatterns {
      * @return the longest run of days with increasing temperatures
      */
     public static int longestWarmingTrend(int[] temperatures) {
-        // TODO: Write your code here!
-        //Creating a highest point and lowest point right now just to have the variables in case I need them.
-        int pointBreak = temperatures[0];
-        int highestStreak = 0;
-        ArrayList<Integer> tempers = new ArrayList<Integer>();
+        // highestStreak is the longest sequence of increasingly larger ints, what we're returning.
+        int highestStreak = 1;
+        //thePath will hold the longest Path to the current temp (i), and will be compared against highestStreak
+        int[] thePath = new int[temperatures.length];
 
-        for(int i = 0; i < temperatures.length; i++)
+        //Just put in thePath[0] as 1 since there's no other option ?
+        thePath[0] = 1;
+
+        for(int i = 1; i < temperatures.length; i++)
         {
-            //To check output and help visualize
-            System.out.println(temperatures[i]);
+//            //To check output and help visualize
+//            System.out.println(temperatures[i]);
 
             //To find the length of the Path to current temperature, if it exists.
-            int trendLength = 1;
+            int trendLength = 0;
 
-            //To find the length of a Path to current node, if it exists.
             // Replace with FindLongestTo once completed
-            for(int j = i - 1; i >= 0; j--)
+            for(int j = 0; j < i; j++)
             {
-//                if()
+                if(temperatures[i] > temperatures[j])
+                {
+                    trendLength = thePath[j];
+                }
 
+                thePath[i] = trendLength + 1;
+
+                //If the length to thePath[i](current temp) is longer than the highestStreak, update highestStreak.
+                if(thePath[i] > highestStreak)
+                {
+                    highestStreak = thePath[i];
+                }
             }
 
 //            if(temperatures[i] < lowestPoint)
@@ -90,7 +101,6 @@ public class WeatherPatterns {
 //            }
 
 
-
 //            if(temperatures[i] > lowestPoint)
 //            {
 //                trendLength++;
@@ -100,12 +110,11 @@ public class WeatherPatterns {
 //                i++;
 //            }
         }
-
         return highestStreak;
     }
 
 //    should work to replace the for-loop currently in the
-//    public static int LongestPathTo(Vertex v)
+//    public static int LongestPathTo(int[] temperatures)
 //    {
 //        int len = 0;
 //
